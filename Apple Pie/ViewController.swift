@@ -12,12 +12,16 @@ class ViewController: UIViewController {
     var listOfWords = [
         "арбуз",
         "банан",
-        "Гномик",
-        "Домик",
+        "Гном",
+        "Дом",
         "Ель",
         "Ёж",
         "Железная Дорога",
-    ]
+        "часы",
+        "курица",
+        "человек",
+        "ложка"
+           ]
     @IBOutlet weak var treeImageView: UIImageView!
     @IBOutlet var letterButtons: [UIButton]!
     @IBOutlet weak var correctWordLabel: UILabel!
@@ -27,7 +31,7 @@ class ViewController: UIViewController {
     
     var totalWins = 0
     var totalLosses = 0
-    var game: Game!
+    var currentGame: Game!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +40,16 @@ class ViewController: UIViewController {
     func newRound ()
     {
         let word = listOfWords.removeFirst()
-        game = Game( word: word, incorrectMovesRemaining:
+        
+        currentGame = Game( word: word, incorrectMovesRemaining:
             incorrectMovesAllowed )
+        updateUI()
         
     }
     func updateUI () {
-        let name = "Tree 5"
-        treeImageView.image = UIImage(named: name)
+        let imageName = "Tree \(currentGame.incorrectMovesRemaining)"
+        treeImageView.image = UIImage(named: imageName)
+        
         scoreLabel.text = "Выигрыши: \(totalWins), проигрышь: \(totalLosses)"
     }
     
