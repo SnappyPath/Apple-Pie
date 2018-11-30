@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         "банан",
         "Гном",
         "Дом",
-        "Ель",
+        "бык",
         "Ёж",
         "Железная Дорога",
         "часы",
