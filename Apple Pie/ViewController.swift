@@ -42,13 +42,20 @@ class ViewController: UIViewController {
         let word = listOfWords.removeFirst()
         
         currentGame = Game( word: word, incorrectMovesRemaining:
-            incorrectMovesAllowed )
+            incorrectMovesAllowed,
+         guessedLetters: []
+            )
+        
         updateUI()
         
     }
     func updateUI () {
         let imageName = "Tree \(currentGame.incorrectMovesRemaining)"
         treeImageView.image = UIImage(named: imageName)
+        currentGame.formattedWord.joined(separtor
+            : " ")
+        
+        correctWordLabel.text = currentGame.formattedWord
         
         scoreLabel.text = "Выигрыши: \(totalWins), проигрышь: \(totalLosses)"
     }
@@ -57,6 +64,12 @@ class ViewController: UIViewController {
     
     @IBAction func ButtonPressed(_ sender: UIButton) {
         sender.isEnabled = false
+        let letterString =
+            sender.title(for: .normal)!
+        let letter =
+            Character(letterString.lowercased())
+        currentGame.playerGuessed(letter: <#T##Character#>)
+        updateUI()
     }
     
     
